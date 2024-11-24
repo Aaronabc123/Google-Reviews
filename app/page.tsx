@@ -1,10 +1,13 @@
+import { SignedOut } from '@clerk/nextjs';
 import Home from './pages/Home'
 
-export default function Page() {
+export default async function Page () {
+
   return (
     <div>
-      <Home />
-      
+      <SignedOut>
+        <Home />
+      </SignedOut>
     </div>
   );
 }

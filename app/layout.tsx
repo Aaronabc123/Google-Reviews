@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import Footer from "./layout/Footer"
-import Header from "./layout/Header"
+import Footer from "./layout/Footer";
+import Header from "./layout/Header";
+import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -30,9 +31,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
-        {children}
-        <Footer />
+        <ClerkProvider signInForceRedirectUrl="/dashboard" afterSignOutUrl="/">
+          <Header />
+          {children}
+          <Footer />
+        </ClerkProvider>
       </body>
     </html>
   );

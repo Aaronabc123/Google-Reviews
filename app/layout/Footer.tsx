@@ -1,4 +1,9 @@
 import Image from "next/image";
+import {
+  SignInButton,
+  SignedOut,
+
+} from '@clerk/nextjs'
 
 export default function Footer() {
   return (
@@ -18,23 +23,15 @@ export default function Footer() {
           height={16}
         />
         Store
-      </a>{" "}
-      |
-      <a
-        className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-        href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Image
-          aria-hidden
-          src="/window.svg"
-          alt="Window icon"
-          width={16}
-          height={16}
-        />
-        Sign In
       </a>
+      |
+      <SignedOut>
+      <div
+        className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+        >
+         <SignInButton />
+      </div>
+      </SignedOut>
       |
       <a
         className="flex items-center gap-2 hover:underline hover:underline-offset-4"
