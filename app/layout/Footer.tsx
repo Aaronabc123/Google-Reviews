@@ -23,7 +23,7 @@ export default function Footer() {
           height={16}
         />
         Store
-      </a>{" "}
+      </a>
       |
       <SignedOut>
       <div

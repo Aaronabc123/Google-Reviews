@@ -41,7 +41,6 @@ export default function Heaer() {
       >
         Dashboard
       </a>
-
       <a
         className="flex items-center gap-2 hover:no-undeline bg-gray-800 text-white px-3 py-1 hover:bg-[#0284c7] rounded"
         href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
