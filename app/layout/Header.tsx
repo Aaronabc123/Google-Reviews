@@ -1,4 +1,11 @@
 import Image from "next/image";
+import {
+  SignInButton,
+  SignedOut,
+  UserButton,
+  SignedIn
+
+} from '@clerk/nextjs'
 
 export default function Heaer() {
   return (
@@ -18,16 +25,14 @@ export default function Heaer() {
         />
         Logo
       </a>{" "}
-      
-      <a
-        className="flex items-center gap-2 hover:no-undeline bg-gray-800 text-white px-3 py-1 hover:bg-[#0284c7] rounded"
-        href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Sign In
-      </a>
-      
+      <SignedOut>
+        <div
+          className="flex items-center gap-2 hover:no-undeline bg-gray-800 text-white px-3 py-1 hover:bg-[#0284c7] rounded"
+        >
+          <SignInButton />
+        </div>
+      </SignedOut>
+      <SignedIn>
       <a
         className="flex items-center gap-2 hover:no-undeline bg-gray-800 text-white px-3 py-1 hover:bg-[#0284c7] rounded"
         href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
@@ -36,7 +41,6 @@ export default function Heaer() {
       >
         Dashboard
       </a>
-      
       <a
         className="flex items-center gap-2 hover:no-undeline bg-gray-800 text-white px-3 py-1 hover:bg-[#0284c7] rounded"
         href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
@@ -45,16 +49,12 @@ export default function Heaer() {
       >
         Review Dashboard
       </a>
-      
-      <a
+      </SignedIn>
+      <div
         className="flex de items-center gap-2 hover:no-undeline"
-        href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
       >
-
-        Profile
-      </a>
+        <UserButton />
+      </div>
     </header>
   );
 }

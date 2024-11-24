@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Footer from "./layout/Footer"
 import Header from "./layout/Header"
+import {
+  ClerkProvider,
+  SignIn,
+} from '@clerk/nextjs'
 import "./globals.css";
 
 const geistSans = localFont({
@@ -30,9 +34,19 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
-        {children}
-        <Footer />
+        <ClerkProvider
+        signInForceRedirectUrl="/dashboard"
+        signUpForceRedirectUrl="/dashboard"
+        afterSignOutUrl="/"
+        >
+          <html lang="en">
+            <body>
+              <Header />
+              {children}
+              <Footer />
+            </body>
+          </html>
+        </ClerkProvider>
       </body>
     </html>
   );

@@ -1,6 +1,11 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import {
+  SignInButton,
+  SignedOut,
+
+} from '@clerk/nextjs'
 const images = [
   "https://revuzee.com/cdn/shop/files/71FM6pDhuiL._AC_SL1500.jpg?v=1723331485&width=1500",
   "https://reviewcards.co.uk/wp-content/uploads/2024/08/2-Google-Review-Cards-768x768.jpg",
@@ -24,7 +29,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     if (rightSectionRef.current) {
       rightSectionRef.current.scrollTo({
-        top: currentImageIndex * 150, 
+        top: currentImageIndex * 150,
         behavior: "smooth",
       });
     }
@@ -35,38 +40,31 @@ const Home: React.FC = () => {
       <div className="md:w-2/5 w-full flex flex-col items-center justify-center p-4 bg-white shadow">
         <h2 className="text-xl font-bold mb-4">"Company name"</h2>
         <div className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-      <a
-        className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-        href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Image
-          aria-hidden
-          src="/file.svg"
-          alt="File icon"
-          width={16}
-          height={16}
-        />
-        Store
-      </a>{" "}
-      |
-      <a
-        className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-        href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Image
-          aria-hidden
-          src="/window.svg"
-          alt="Window icon"
-          width={16}
-          height={16}
-        />
-        Sign In
-      </a>
-      </div>
+          <a
+            className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              aria-hidden
+              src="/file.svg"
+              alt="File icon"
+              width={16}
+              height={16}
+            />
+            Store
+          </a>{" "}
+          |
+          <SignedOut>
+            <div
+              className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+            >
+              <SignInButton />
+
+            </div>
+          </SignedOut>
+        </div>
       </div>
       <div
         ref={rightSectionRef}
@@ -81,9 +79,9 @@ const Home: React.FC = () => {
               className="rounded shadow h-screen"
               style={{
                 display: currentImageIndex === index ? "block" : "none",
-                width: "70%", 
+                width: "70%",
                 height: "100%",
-                objectFit: "cover", 
+                objectFit: "cover",
               }}
             />
           ))}
