@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Link from "next/link"
 import {
   SignInButton,
   SignedOut,
@@ -9,49 +9,33 @@ import {
 
 export default function Heaer() {
   return (
-    <header className="row-start-3 bg-yellow-400 py-2 px-12 flex gap-6 flex-wrap items-center justify-center fixed  w-full">
-      <a
-        className="flex items-center gap-5 mr-22 hover:no-undeline px-3 bg-gray-800 text-white px-3 py-1 hover:bg-[#0284c7] rounded-xl"
-        href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Image
-          aria-hidden
-          src="/file.svg"
-          alt="File icon"
-          width={16}
-          height={16}
-        />
-        Logo
-      </a>{" "}
+    <header className="row-start-3 bg-yellow-400 py-2 px-12 flex gap-6 h-14 flex-wrap items-center justify-center fixed  w-full">
+      <Link href="/"
+        className="absolute left-3 md:left-16 hover:no-undeline font-black px-3 bg-black text-white text-lg px-3 py-2 hover:bg-blue-500 rounded-xl"
+      > 
+        GOOGLE REVIEW
+      </Link>
       <SignedOut>
         <div
-          className="flex items-center gap-2 hover:no-undeline bg-gray-800 text-white px-3 py-1 hover:bg-[#0284c7] rounded"
+          className="absolute right-3 md:right-16 right-16 hover:no-undeline bg-black text-white text-xs px-3 py-2 hover:bg-blue-500 font-bold rounded"
         >
           <SignInButton />
         </div>
       </SignedOut>
       <SignedIn>
-      <a
-        className="flex items-center gap-2 hover:no-undeline bg-gray-800 text-white px-3 py-1 hover:bg-[#0284c7] rounded"
-        href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
+      <Link href="/dashboard"
+        className="flex items-center gap-2 hover:no-undeline bg-black text-white text-xs px-3 py-2 hover:bg-blue-500 font-bold rounded"
       >
         Dashboard
-      </a>
-      <a
-        className="flex items-center gap-2 hover:no-undeline bg-gray-800 text-white px-3 py-1 hover:bg-[#0284c7] rounded"
-        href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
+      </Link>
+     <Link href="/commingsoon"
+        className="flex items-center gap-2 hover:no-undeline bg-black text-white text-xs px-3 py-2 hover:bg-blue-500 font-bold rounded"  
       >
         Review Dashboard
-      </a>
+      </Link>
       </SignedIn>
       <div
-        className="flex de items-center gap-2 hover:no-undeline"
+        className="absolute right-16 items-center gap-2 hover:no-undeline"
       >
         <UserButton />
       </div>
