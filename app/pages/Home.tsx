@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import Link from"next/link"
 import Image from "next/image";
 import {
   SignInButton,
@@ -8,8 +9,8 @@ import {
 } from '@clerk/nextjs'
 const images = [
   "https://revuzee.com/cdn/shop/files/71FM6pDhuiL._AC_SL1500.jpg?v=1723331485&width=1500",
-  "https://reviewcards.co.uk/wp-content/uploads/2024/08/2-Google-Review-Cards-768x768.jpg",
-  "https://cdn.shopify.com/s/files/1/0774/1607/1474/files/img-1097-2-66685306b2e20.webp?v=1718113075&width=2048",
+  "https://m.media-amazon.com/images/I/81tMa4aXv2L._AC_UF894,1000_QL80_.jpg",
+  "https://review.cards/wp-content/uploads/2024/03/Google-NFC_QR-Code-Landscapr_portrait-image-isolate-1.png",
 ];
 
 const Home: React.FC = () => {
@@ -21,7 +22,7 @@ const Home: React.FC = () => {
       setCurrentImageIndex((prevIndex) =>
         (prevIndex + 1) % images.length 
       );
-    }, 2000); 
+    }, 3000); 
 
     return () => clearInterval(interval); 
   }, [images.length]);
@@ -38,28 +39,33 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-wrap bg-gray-100">
       <div className="md:w-2/5 w-full flex flex-col items-center justify-center p-4 bg-white shadow">
-        <h2 className="text-xl font-bold mb-4">"Company name"</h2>
-        <div className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-          <a
-            className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+        <h2 className="text-xl font-bold mt-10 md:my-4  font-black px-3 text-2xl md:text-4xl">GOOGLE REVIEW</h2>
+        <div className="row-start-3 hidden md:flex gap-6 flex-wrap items-center justify-center">
+        <Link href="/commingsoon" className="flex items-center gap-2 hover:underline hover:underline-offset-4"
             target="_blank"
             rel="noopener noreferrer"
           >
             <Image
               aria-hidden
-              src="/file.svg"
-              alt="File icon"
+              src="/icons/store.png"
+              alt="Store icon"
               width={16}
               height={16}
             />
             Store
-          </a>{" "}
-          |
+          </Link>
           <SignedOut>
+          |
             <div
               className="flex items-center gap-2 hover:underline hover:underline-offset-4"
             >
+              <Image
+                aria-hidden
+                src="/icons/login.png"
+                alt="Login icon"
+                width={16}
+                height={16}
+            />
               <SignInButton />
 
             </div>
@@ -68,9 +74,9 @@ const Home: React.FC = () => {
       </div>
       <div
         ref={rightSectionRef}
-        className="md:w-3/5 w-full h-screen p-4 bg-gray-200 shadow overflow-scroll"
+        className="md:w-3/5 md:mt-14 bg-gray-200 shadow "
       >
-        <div className="h-full] h-scroll">
+        <div className="w-full">
           {images.map((src, index) => (
             <img
               key={index}
@@ -79,9 +85,8 @@ const Home: React.FC = () => {
               className="rounded shadow h-screen"
               style={{
                 display: currentImageIndex === index ? "block" : "none",
-                width: "70%",
-                height: "100%",
-                objectFit: "cover",
+                width: "100%",
+                height: "auto",
               }}
             />
           ))}

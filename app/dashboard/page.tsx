@@ -1,27 +1,17 @@
 "use client";
-import { SignedIn, SignedOut, SignIn } from '@clerk/nextjs';
+import { SignedIn} from "@clerk/nextjs";
+import ReviewCard from "../components/ReviewCard";
 const Dashboard: React.FC = () => {
-  return (
-    <div>
-      <SignedIn>
-        <div className="min-h-screen flex flex-wrap bg-gray-100">
-          <div className="w-full flex flex-col items-center justify-center p-4 bg-white shadow">
-            <h2 className="text-xl font-bold mb-4">WELCOME TO THE DASHNOARD</h2>
 
-          </div>
+  return (
+    <div className="flex-grow">
+      <SignedIn>
+        <div className="w-full flex flex-col items-center justify-center pt-14 bg-white ">
+          <ReviewCard />
         </div>
       </SignedIn>
-      <SignedOut>
-        <div className="min-h-screen overflow-scroll flex flex-wrap bg-gray-100">
-          <div className="w-full flex flex-col items-center justify-center p-4 bg-white shadow">
-            <SignIn />
-          </div>
-        </div>
-      </SignedOut>
-
     </div>
   );
 };
 
 export default Dashboard;
-

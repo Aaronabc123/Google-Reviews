@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
+model Card {
+  id            String        @id @default(cuid()) // Unique identifier
+  name          String
+  address       String
+  link          String
+  views         Int
+  image         String
+  qrcod         String        @map("qrcode") // Ensure correct naming for the database column
+  viewDatesArr  ViewDatesArr[] // Relation to ViewDatesArr model
+}
+
+model ViewDatesArr {
+  id          String   @id @default(cuid()) // Unique identifier for each date entry
+  cardId      String   // Foreign key to Card model
+  viewDate    DateTime // Date when views are counted
+  count       Int      // Count of views for the specific date
+
+  card        Card @relation(fields: [cardId], references: [id]) // Relation with Card
+}
