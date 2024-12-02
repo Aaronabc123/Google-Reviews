@@ -1,60 +1,43 @@
-import Image from "next/image";
-import {
-  SignInButton,
-  SignedOut,
-  UserButton,
-  SignedIn
+"use client";
+import Link from "next/link";
+import { SignInButton, SignedOut, UserButton, SignedIn } from "@clerk/nextjs";
+import MenuButton from "../components/MenuButton";
 
-} from '@clerk/nextjs'
-
-export default function Heaer() {
+export default function Header() {
   return (
-    <header className="row-start-3 bg-yellow-400 py-2 px-12 flex gap-6 flex-wrap items-center justify-center fixed  w-full">
-      <a
-        className="flex items-center gap-5 mr-22 hover:no-undeline px-3 bg-gray-800 text-white px-3 py-1 hover:bg-[#0284c7] rounded-xl"
-        href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Image
-          aria-hidden
-          src="/file.svg"
-          alt="File icon"
-          width={16}
-          height={16}
-        />
-        Logo
-      </a>{" "}
-      <SignedOut>
-        <div
-          className="flex items-center gap-2 hover:no-undeline bg-gray-800 text-white px-3 py-1 hover:bg-[#0284c7] rounded"
+    <div>
+      
+      <header className="row-start-3 z-20 bg-yellow-400 py-2 px-12 flex gap-6 h-14 flex-wrap items-center justify-center fixed  w-full">
+      <MenuButton />
+        <Link
+          href="/"
+          className="absolute md:left-32 hover:no-undeline font-black px-3 bg-black text-white text-sm px-3 py-2 hover:bg-blue-500 rounded-xl"
         >
-          <SignInButton />
+          GOOGLE REVIEW
+        </Link>
+        <SignedOut>
+          <div className="absolute right-3 md:right-16 right-16 hover:no-undeline bg-black text-white text-xs px-3 py-2 hover:bg-blue-500 font-bold rounded">
+            <SignInButton />
+          </div>
+        </SignedOut>
+        <SignedIn>
+          <Link
+            href="/dashboard"
+            className="flex items-center hidden md:flex gap-2 hover:no-undeline bg-black text-white text-xs px-3 py-2 hover:bg-blue-500 font-bold rounded"
+          >
+            Dashboard
+          </Link>
+          <Link
+            href="/commingsoon"
+            className="flex items-center hidden md:flex gap-2 hover:no-undeline bg-black text-white text-xs px-3 py-2 hover:bg-blue-500 font-bold rounded"
+          >
+            Review Dashboard
+          </Link>
+        </SignedIn>
+        <div className="absolute right-2 md:right-32 top-4 items-center gap-2 hover:no-undeline">
+          <UserButton />
         </div>
-      </SignedOut>
-      <SignedIn>
-      <a
-        className="flex items-center gap-2 hover:no-undeline bg-gray-800 text-white px-3 py-1 hover:bg-[#0284c7] rounded"
-        href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Dashboard
-      </a>
-      <a
-        className="flex items-center gap-2 hover:no-undeline bg-gray-800 text-white px-3 py-1 hover:bg-[#0284c7] rounded"
-        href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Review Dashboard
-      </a>
-      </SignedIn>
-      <div
-        className="flex de items-center gap-2 hover:no-undeline"
-      >
-        <UserButton />
-      </div>
-    </header>
+      </header>
+    </div>
   );
 }
