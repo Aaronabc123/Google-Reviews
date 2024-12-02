@@ -2,9 +2,9 @@ import React from "react";
 import Link from "next/link"
 const About: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center text-gray-800 px-4">
+    <div className="min-h-screen bg-gray-50 flex flex-col mt-12 items-center justify-center text-gray-800 px-4">
       <div className="max-w-3xl bg-white shadow-lg rounded-lg p-8">
-        <h1 className="text-3xl font-bold mb-4 text-center text-blue-600">
+        <h1 className="text-3xl hidden font-bold mb-4 text-center text-blue-600">
           About Google Review
         </h1>
         <p className="text-lg mb-4">

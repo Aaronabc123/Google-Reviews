@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import { SignInButton, SignedOut } from "@clerk/nextjs";
+import { SignInButton, SignedOut, SignedIn, SignOutButton } from "@clerk/nextjs";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-100 md:relative  lg:bottom-0 lg:left-0 lg:right-0 py-5 w-full">
-      <div className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
+    <footer className="bg-gray-100 md:relativ py-5 w-full">
+      <div className="row-start-3 flex gap-6 flex flex-wrap items-center justify-center">
       <Link href="/commingsoon" className="flex items-center gap-2 hover:underline hover:underline-offset-4 text-xs text-blue-400">
           Store
         </Link>
@@ -14,6 +14,13 @@ export default function Footer() {
             <SignInButton />
           </div>
         </SignedOut>
+
+        <SignedIn>
+        |
+          <div className="flex items-center gap-2 hover:underline hover:underline-offset-4 text-xs text-blue-400">
+            <SignOutButton />
+          </div>
+        </SignedIn>
         |
         <Link href="/about" className="flex items-center gap-2 hover:underline hover:underline-offset-4 text-xs text-blue-400"
           target="_blank"
@@ -30,7 +37,7 @@ export default function Footer() {
         </Link>
       </div>
 
-      <div className="flex items-center justify-center text-xs py-3">
+      <div className="row-start-3 flex gap-6 flex flex-wrap items-center justify-center">
         © Copyright 2024 Google review
       </div>
     </footer>

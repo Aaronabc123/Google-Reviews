@@ -2,7 +2,6 @@
 import { SignedIn} from "@clerk/nextjs";
 import ReviewCard from "../components/ReviewCard";
 const Dashboard: React.FC = () => {
-
   return (
     <div className="flex-grow">
       <SignedIn>

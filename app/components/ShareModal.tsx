@@ -23,7 +23,7 @@ interface ShareCardProps {
 const ShareModal: React.FC<ShareCardProps> = ({ card }) => {
   const [isOpen, setIsOpen] = useState(false);
   const copyToClipboard = () => {
-    navigator.clipboard.writeText("https://tapfivestars.com/review/cej");
+    navigator.clipboard.writeText(`https://google-review-fai.vercel.app/review/${card.id}`);
     alert("Link copied to clipboard!");
   };
 
@@ -74,7 +74,7 @@ const ShareModal: React.FC<ShareCardProps> = ({ card }) => {
             <div className="flex items-center mb-6">
               <input
                 type="text"
-                value={card.link}
+                value={`https://google-review-fai.vercel.app/review/${card.id}`}
                 readOnly
                 className="w-full px-2 py-1 border rounded-l-md text-sm"
               />
@@ -92,12 +92,14 @@ const ShareModal: React.FC<ShareCardProps> = ({ card }) => {
                 alt="QR Code"
                 className="w-32 h-32 mb-4"
               />
+               <a href={card.qrcod} download>
               <button
                 className="px-4 py-2 bg-green-500 text-white rounded-lg"
                 onClick={() => alert("QR Code Downloaded!")} 
               >
                 Download QR
               </button>
+              </a>
             </div>
           </div>
         </div>

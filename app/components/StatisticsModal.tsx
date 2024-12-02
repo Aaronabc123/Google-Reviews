@@ -17,6 +17,7 @@ ChartJS.register(LineElement, PointElement, LinearScale, Title, Tooltip, Categor
 interface ViewDatesArr {
   date: string; // ISO format preferred for dates
   count: number;
+  viewDate:string;
 }
 
 interface CardData {
@@ -35,26 +36,24 @@ interface StatisticsModalProps {
 }
 
 const StatisticsModal: React.FC<StatisticsModalProps> = ({ card }) => {
+  const viewDatesArr=  card.viewDatesArr.map((date) =>{
+    return   date?.viewDate.split("T")[0]
+    })
 
-  console.log("card:---", card)
+  const views=  card.viewDatesArr.map((view) =>{
+    return  view.count
+    })
   const [isOpen, setIsOpen] = useState(false);
 
   // Chart Data
   const data = {
     labels: 
-    [
-      "2024-10-23",
-      "2024-10-25",
-      "2024-11-19",
-      "2024-11-21",
-      "2024-11-24",
-      "2024-11-25",
-    ]
+    viewDatesArr.slice(-6)
     ,
     datasets: [
       {
         label: "Count",
-        data: [1, 8, 0, 0, 19, 1],
+        data: views.slice(-6),
         borderColor: "#38BDF8",
         backgroundColor: "rgba(56, 189, 248, 0.5)",
         tension: 0.4,

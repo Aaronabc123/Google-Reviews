@@ -4,10 +4,12 @@ import ShareModal from "./ShareModal";
 import StatisticsModal from "./StatisticsModal";
 import SettingsModal from "./SettingsModal";
 import Spinner from "./Spinner";
+import Link from "next/link"
 
 interface viewDatesArr {
-  date: string; // ISO format preferred for dates
+  date: string; 
   count: number;
+  viewDate: string; 
 }
 interface CardData {
   id: string;
@@ -25,8 +27,6 @@ const FilterableCards = () => {
   const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState<string>("Oldest");
 
-  console.log("cards:---", cards)
-
   // Fetch cards from API
   useEffect(() => {
     const fetchCards = async () => {
@@ -37,7 +37,6 @@ const FilterableCards = () => {
     } catch (error) {
       console.error("Error fetching cards:", error);
     } finally {
-      // Wait for 3 seconds before stopping the loading state
       setTimeout(() => {
         setLoading(false);
       }, 3000);
@@ -82,8 +81,6 @@ const FilterableCards = () => {
               />
               <button className="text-gray-400 hover:text-gray-600">✕</button>
             </div>
-
-            {/* Device Type Dropdown */}
             <div>
               <select className="border border-gray-300 rounded-md px-3 py-2 bg-gray-50 text-gray-600 outline-none cursor-pointer">
                 <option value="Google Stand" className="text-xs">
@@ -110,7 +107,6 @@ const FilterableCards = () => {
               </select>
             </div>
 
-            {/* Sort By Dropdown */}
             <div>
               <select
                 value={sortBy}
@@ -136,7 +132,7 @@ const FilterableCards = () => {
             </div>
           </div>
           <div>
-          <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
+          <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3  items-center justify-center">
               {cards.map((card:CardData) => (
                 <div
                   key={card.id}
@@ -150,29 +146,28 @@ const FilterableCards = () => {
                         </h2>
                         <p className="text-xs text-gray-500">{card.address}</p>
                       </div>
-                      <a
-                        href="https://g.page/r/CYPTkct1jx9NEBM/review"
-                        className="flex text-blue-500 text-xs hover:underline"
-                        title="View Details"
+                      <Link href={`/review/${card.id}`} className="flex items-center gap-2 hover:underline hover:underline-offset-4 text-xs text-blue-400"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         <span className="mr-1">View</span>
                         <Image
-                          aria-hidden
                           src="/icons/link.png"
-                          alt="link_icon"
+                          alt="linkicon"
                           width={16}
                           height={16}
                         />
-                      </a>
+                      </Link>
                     </div>
                     <img
                       src={card.image}
                       alt={card.name}
                       className="mx-auto h-48 object-cover"
                     />
-                    <div className="mt-4 flex justify-between items-center">
-                      <div className="text-gray-600">
-                        <span>Views:</span> {card.views}
+                    <div className="mt-4 flex flex-wrap justify-between items-center">
+                      <div className="flex text-gray-600">
+                        <span className="text-xs justify-between items-center">Views:</span>
+                        <span className="text-xs text-blue-400 font-bold justify-between items-center"> {card.views}</span>
                       </div>
                       <p className="text-xs text-gray-400">
                         Device ID: {card.id}
@@ -190,8 +185,8 @@ const FilterableCards = () => {
           </div>
         </div>
       ):(
-        <div className="p-6 max-w-xl mx-auto bg-white border border-gray-200 rounded-lg shadow-lg bg-red">
-          {/* Header */}
+        <div>
+        {!loading && <div className="p-6 max-w-xl mx-auto bg-white border border-gray-200 rounded-lg shadow-lg bg-red">
           <div className="flex items-center space-x-2 mb-4">
             <img
               src="/icons/logo.png"
@@ -202,8 +197,6 @@ const FilterableCards = () => {
               Google Service Device
             </h2>
           </div>
-
-          {/* Message */}
           <div className="text-lg text-red-600 font-bold mb-4">
             No GoogleService devices are activated
           </div>
@@ -211,8 +204,6 @@ const FilterableCards = () => {
           <p className="text-sm text-gray-700 mb-6">
             To activate a device to your business, follow these easy steps:
           </p>
-
-          {/* Steps List */}
           <ol className="list-decimal pl-6 space-y-2 text-sm text-gray-700 mb-6">
             <li>
               Scan the QR code on the GoogleService device (card, sticker, or
@@ -229,8 +220,6 @@ const FilterableCards = () => {
               above.
             </li>
           </ol>
-
-          {/* Call to Action */}
           <p className="text-sm text-gray-600 mb-4">
             Enjoy the boost in reviews, SEO, and customers!
           </p>
@@ -238,6 +227,7 @@ const FilterableCards = () => {
           <button className="w-full bg-yellow-500 text-white py-2 rounded-md hover:bg-yellow-600 focus:outline-none">
             Unlock 20% Off: Grab Your GoogleService products Now!
           </button>
+        </div>}
         </div>
       )}
     </div>

@@ -8,21 +8,27 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  createdAt DateTime @default(now())
+  id              String   @id @default(cuid()) // User's unique ID (cuid)
+  clerkId         String?  @unique
+  name            String
+  email           String   @unique
+  userType        String   @default("free") // User type: free, standard, pro, admin
+  subscriptionDate String[]
+  createdAt       DateTime @default(now())
+  card            Card[]   // Relation to Card model
 }
 
 model Card {
-  id            String        @id @default(cuid()) // Unique identifier
+  id            String        @id @default(cuid()) // Unique identifier for the card
+  userId        String        // Foreign key to the User model's id field (also a String)
   name          String
   address       String
   link          String
   views         Int
   image         String
-  qrcod         String        @map("qrcode") // Ensure correct naming for the database column
+  qrcod         String        @map("qrcode")
   viewDatesArr  ViewDatesArr[] // Relation to ViewDatesArr model
+  user          User          @relation(fields: [userId], references: [id]) // Corrected reference
 }
 
 model ViewDatesArr {
@@ -30,6 +36,5 @@ model ViewDatesArr {
   cardId      String   // Foreign key to Card model
   viewDate    DateTime // Date when views are counted
   count       Int      // Count of views for the specific date
-
-  card        Card @relation(fields: [cardId], references: [id]) // Relation with Card
+  card        Card     @relation(fields: [cardId], references: [id]) // Relation with Card
 }

@@ -33,7 +33,7 @@ export default function RootLayout({
       >
         <ClerkProvider
           signInForceRedirectUrl="/dashboard"
-          signUpForceRedirectUrl="/dashboard"
+          signUpForceRedirectUrl="/newuser"
           afterSignOutUrl="/"
         >
           <Header />

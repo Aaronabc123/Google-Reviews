@@ -1,12 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Link from"next/link"
+import Link from "next/link";
 import Image from "next/image";
-import {
-  SignInButton,
-  SignedOut,
-
-} from '@clerk/nextjs'
+import { SignInButton, SignedOut, SignedIn, SignOutButton } from "@clerk/nextjs";
 const images = [
   "https://revuzee.com/cdn/shop/files/71FM6pDhuiL._AC_SL1500.jpg?v=1723331485&width=1500",
   "https://m.media-amazon.com/images/I/81tMa4aXv2L._AC_UF894,1000_QL80_.jpg",
@@ -17,14 +13,11 @@ const Home: React.FC = () => {
   const rightSectionRef = useRef<HTMLDivElement | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   useEffect(() => {
-
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) =>
-        (prevIndex + 1) % images.length 
-      );
-    }, 3000); 
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 3000);
 
-    return () => clearInterval(interval); 
+    return () => clearInterval(interval);
   }, [images.length]);
 
   useEffect(() => {
@@ -37,11 +30,15 @@ const Home: React.FC = () => {
   }, [currentImageIndex]);
 
   return (
-    <div className="min-h-screen flex flex-wrap bg-gray-100">
-      <div className="md:w-2/5 w-full flex flex-col items-center justify-center p-4 bg-white shadow">
-        <h2 className="text-xl font-bold mt-10 md:my-4  font-black px-3 text-2xl md:text-4xl">GOOGLE REVIEW</h2>
+    <div className="md:min-h-screen flex flex-wrap bg-gray-100">
+      <div className="hidden w-full md:w-2/5 md:flex flex-col items-center justify-center p-4 bg-white shadow">
+        <h2 className="text-xl font-bold mt-2 md:my-4  font-black px-3 text-2xl md:text-4xl">
+          GOOGLE REVIEW
+        </h2>
         <div className="row-start-3 hidden md:flex gap-6 flex-wrap items-center justify-center">
-        <Link href="/commingsoon" className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          <Link
+            href="/commingsoon"
+            className="flex items-center gap-2 hover:underline hover:underline-offset-4"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -55,26 +52,35 @@ const Home: React.FC = () => {
             Store
           </Link>
           <SignedOut>
-          |
-            <div
-              className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-            >
+            |
+            <div className="flex items-center gap-2 hover:underline hover:underline-offset-4">
               <Image
                 aria-hidden
                 src="/icons/login.png"
                 alt="Login icon"
                 width={16}
                 height={16}
-            />
+              />
               <SignInButton />
-
             </div>
           </SignedOut>
+          <SignedIn>
+          <div className="flex items-center gap-2 hover:underline hover:underline-offset-4">
+            <Image
+              aria-hidden
+              src="/icons/login.png"
+              alt="Login icon"
+              width={16}
+              height={16}
+            />
+            <SignOutButton />
+            </div>
+          </SignedIn>
         </div>
       </div>
       <div
         ref={rightSectionRef}
-        className="md:w-3/5 md:mt-14 bg-gray-200 shadow "
+        className="w-full md:w-3/5 mt-14 bg-gray-200 shadow bg-yellow-300 "
       >
         <div className="w-full">
           {images.map((src, index) => (

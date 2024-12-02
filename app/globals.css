@@ -19,3 +19,15 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.menu-open {
+  transform: scale(1); /* Normal state */
+  opacity: 1; /* Fully visible */
+  transition: all 0.6s ease-in-out; /* Adjust duration for slowness */
+}
+
+.menu-closed {
+  transform: scale(0.9); /* Slightly shrink */
+  opacity: 0.8; /* Semi-transparent */
+  transition: all 0.6s ease-in-out; /* Matches the opening duration */
+}
