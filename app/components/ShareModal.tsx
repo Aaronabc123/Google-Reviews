@@ -58,17 +58,37 @@ const ShareModal: React.FC<ShareCardProps> = ({ card }) => {
 
             <h3 className="text-xl font-semibold mb-4">Share</h3>
             <div className="flex justify-around mb-6">
-              <a href="#" className="text-blue-600 hover:text-blue-800">
-                <i className="fab fa-facebook text-2xl"></i>
+              <a href={`http://twitter.com/share?text=Please give us a review on this link&url=https://google-review-fai.vercel.app/review/${card.id}`} target="_blank" className="text-blue-600 hover:text-blue-800">
+              <Image
+                src="/icons/twitter.png"
+                alt="twittercon"
+                width={16}
+                height={16}
+              />
               </a>
-              <a href="#" className="text-blue-400 hover:text-blue-600">
-                <i className="fab fa-twitter text-2xl"></i>
+              <a href={`http://whatsapp.com/share?text=Please give us a review on this link&url=https://google-review-fai.vercel.app/review/${card.id}`} target="_blank" className="text-blue-400 hover:text-blue-600">
+                <Image
+                  src="/icons/whatsapp.png"
+                  alt="whatappicon"
+                  width={16}
+                  height={16}
+                />
               </a>
-              <a href="#" className="text-green-500 hover:text-green-700">
-                <i className="fab fa-whatsapp text-2xl"></i>
+              <a href={`http://facebook.com/share?text=Please give us a review on this link&url=https://google-review-fai.vercel.app/review/${card.id}`} target="_blank" className="text-green-500 hover:text-green-700">
+                <Image
+                  src="/icons/facebook.png"
+                  alt="facebookicon"
+                  width={16}
+                  height={16}
+                />
               </a>
-              <a href="#" className="text-blue-700 hover:text-blue-900">
-                <i className="fab fa-linkedin text-2xl"></i>
+              <a href={`http://linkedin.com/share?text=Please give us a review on this link&url=https://google-review-fai.vercel.app/review/${card.id}`} target="_blank" className="text-blue-700 hover:text-blue-900">
+              <Image
+                  src="/icons/linkedin.png"
+                  alt="linkedinicon"
+                  width={16}
+                  height={16}
+                />
               </a>
             </div>
             <div className="flex items-center mb-6">
