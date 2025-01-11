@@ -37,7 +37,7 @@ export default function Footer() {
         </Link>
       </div>
 
-      <div className="row-start-3 flex gap-6 flex flex-wrap items-center justify-center">
+      <div className="row-start-3 text-gray-800 text-xs flex gap-6 flex flex-wrap items-center justify-center">
         © Copyright 2024 Google review
       </div>
     </footer>

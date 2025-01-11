@@ -130,7 +130,7 @@ const StatisticsModal: React.FC<StatisticsModalProps> = ({ card }) => {
 
             {/* Modal Header */}
             <h3 className="text-lg font-bold mb-4 text-center text-gray-800">
-              Statistics - Starbucks
+              Statistics - {card.name}
             </h3>
 
             {/* Chart */}

@@ -1,12 +1,11 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma"; // Ensure this matches your project structure
+import { prisma } from "@/lib/prisma";
 
-// Handle GET requests (Retrieve all cards)
 export async function GET() {
   try {
     const cards = await prisma.card.findMany({
       include: {
-        viewDatesArr: true, // This will include the related ViewDatesArr entries for each card
+        viewDatesArr: true,
       },
     })
     if (!cards || cards.length === 0) {
@@ -40,4 +39,36 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ error: "Failed to delete card" }, { status: 500 });
   }
 
+
+  export async function PUT(request: Request) {
+    try {
+      const { id, name, address, link, viewDatesArr } = await request.json();
+      console.log("card:---",id, name, address, link, viewDatesArr)
+  
+      if (!id) {
+        return NextResponse.json({ error: "ID is required" }, { status: 400 });
+      }
+  
+      // Optionally, you can validate the other fields like `name`, `address`, etc. as needed
+      if (!name || !address || !link) {
+        return NextResponse.json({ error: "Name, address, and link are required" }, { status: 400 });
+      }
+  
+      // Update the card
+      const updatedCard = await prisma.card.update({
+        where: { id },
+        data: {
+          name,
+          address,
+          link,
+        },
+      });
+      console.log("updatedCard:---", updatedCard)
+  
+      return NextResponse.json(updatedCard);
+    } catch (error) {
+      console.error("Error updating card:", error instanceof Error ? error.message : error);
+      return NextResponse.json({ error: "Failed to update card" }, { status: 500 });
+    }
+  }
 
