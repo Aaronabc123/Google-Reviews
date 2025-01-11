@@ -13,7 +13,7 @@ interface CardData {
   viewDatesArr: Array<ViewDatesArr>;
   views: number;
   image: string;
-  qrcod:string;
+  qrcod: string;
 }
 
 interface ShareCardProps {
@@ -23,31 +23,41 @@ interface ShareCardProps {
 const ShareModal: React.FC<ShareCardProps> = ({ card }) => {
   const [isOpen, setIsOpen] = useState(false);
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(`https://google-review-fai.vercel.app/review/${card.id}`);
+    navigator.clipboard.writeText(
+      `https://google-review-fai.vercel.app/review/${card.id}`
+    );
     alert("Link copied to clipboard!");
   };
 
   return (
     <>
-    <div className="flex text-xs text-gray-600 hover:text-gray-800 cursor-pointer" onClick={() => setIsOpen(true)}>
-              <Image
-                aria-hidden
-                src="/icons/share.png"
-                alt="Share_icon"
-                width={16}
-                height={16}
-            />
-                Share
-              </div>
+      <div
+        className="flex items-center px-4 py-2 hover:bg-gray-100 cursor-pointer"
+        onClick={() => setIsOpen(true)}
+      >
+        <Image
+          src="/icons/thumb.png"
+          alt="thumb-icon"
+          className="mr-3"
+          width={16}
+          height={16}
+        />
+        <div>
+          <div className="text-sm text-gray-800">Recommend this product</div>
+          <div className="text-xs text-gray-800">
+            Share googlereview card with friends
+          </div>
+        </div>
+      </div>
 
       {isOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
-          onClick={() => setIsOpen(false)} 
+          onClick={() => setIsOpen(false)}
         >
           <div
             className="bg-white p-6 rounded-lg shadow-lg w-80 relative"
-            onClick={(e) => e.stopPropagation()} 
+            onClick={(e) => e.stopPropagation()}
           >
             <button
               className="absolute top-4 right-4 text-gray-600 text-lg"
@@ -58,15 +68,23 @@ const ShareModal: React.FC<ShareCardProps> = ({ card }) => {
 
             <h3 className="text-xl font-semibold mb-4">Share</h3>
             <div className="flex justify-around mb-6">
-              <a href={`http://twitter.com/share?text=Please give us a review on this link&url=https://google-review-fai.vercel.app/review/${card.id}`} target="_blank" className="text-blue-600 hover:text-blue-800">
-              <Image
-                src="/icons/twitter.png"
-                alt="twittercon"
-                width={16}
-                height={16}
-              />
+              <a
+                href={`http://twitter.com/share?text=Please give us a review on this link&url=https://google-review-fai.vercel.app/review/${card.id}`}
+                target="_blank"
+                className="text-blue-600 hover:text-blue-800"
+              >
+                <Image
+                  src="/icons/twitter.png"
+                  alt="twittercon"
+                  width={16}
+                  height={16}
+                />
               </a>
-              <a href={`http://whatsapp.com/share?text=Please give us a review on this link&url=https://google-review-fai.vercel.app/review/${card.id}`} target="_blank" className="text-blue-400 hover:text-blue-600">
+              <a
+                href={`http://whatsapp.com/share?text=Please give us a review on this link&url=https://google-review-fai.vercel.app/review/${card.id}`}
+                target="_blank"
+                className="text-blue-400 hover:text-blue-600"
+              >
                 <Image
                   src="/icons/whatsapp.png"
                   alt="whatappicon"
@@ -74,7 +92,11 @@ const ShareModal: React.FC<ShareCardProps> = ({ card }) => {
                   height={16}
                 />
               </a>
-              <a href={`http://facebook.com/share?text=Please give us a review on this link&url=https://google-review-fai.vercel.app/review/${card.id}`} target="_blank" className="text-green-500 hover:text-green-700">
+              <a
+                href={`http://facebook.com/share?text=Please give us a review on this link&url=https://google-review-fai.vercel.app/review/${card.id}`}
+                target="_blank"
+                className="text-green-500 hover:text-green-700"
+              >
                 <Image
                   src="/icons/facebook.png"
                   alt="facebookicon"
@@ -82,8 +104,12 @@ const ShareModal: React.FC<ShareCardProps> = ({ card }) => {
                   height={16}
                 />
               </a>
-              <a href={`http://linkedin.com/share?text=Please give us a review on this link&url=https://google-review-fai.vercel.app/review/${card.id}`} target="_blank" className="text-blue-700 hover:text-blue-900">
-              <Image
+              <a
+                href={`http://linkedin.com/share?text=Please give us a review on this link&url=https://google-review-fai.vercel.app/review/${card.id}`}
+                target="_blank"
+                className="text-blue-700 hover:text-blue-900"
+              >
+                <Image
                   src="/icons/linkedin.png"
                   alt="linkedinicon"
                   width={16}
@@ -104,22 +130,6 @@ const ShareModal: React.FC<ShareCardProps> = ({ card }) => {
               >
                 Copy
               </button>
-            </div>
-
-            <div className="flex flex-col items-center">
-              <img
-                src={card.qrcod} 
-                alt="QR Code"
-                className="w-32 h-32 mb-4"
-              />
-               <a href={card.qrcod} download>
-              <button
-                className="px-4 py-2 bg-green-500 text-white rounded-lg"
-                onClick={() => alert("QR Code Downloaded!")} 
-              >
-                Download QR
-              </button>
-              </a>
             </div>
           </div>
         </div>
