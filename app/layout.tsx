@@ -17,7 +17,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Google reviews",
+  title: "Instantly Review Us",
   description: "Make it easy to submit reviews",
 };
 

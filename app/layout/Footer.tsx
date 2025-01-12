@@ -38,7 +38,7 @@ export default function Footer() {
       </div>
 
       <div className="row-start-3 text-gray-800 text-xs flex gap-6 flex flex-wrap items-center justify-center">
-        © Copyright 2024 Google review
+        © Copyright 2024 Instantly Review Us
       </div>
     </footer>
   );
