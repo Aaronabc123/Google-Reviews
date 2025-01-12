@@ -143,7 +143,7 @@ const FilterableCards = () => {
                   <div className="p-4">
                    <MenuModal card={card} />
                     <div className="text-xs text-gray-800 text-center py-2">
-                      Google Review Card
+                    Instantly Review Us Card
                     </div>
 
                     <img

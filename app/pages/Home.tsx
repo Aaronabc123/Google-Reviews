@@ -33,7 +33,7 @@ const Home: React.FC = () => {
     <div className="min-h-screen flex flex-wrap bg-gray-100">
       <div className="w-full md:w-2/5 hidden md:flex flex-col items-center justify-center p-4 bg-white shadow">
         <h2 className="text-xl font-bold mt-2 md:my-4 text-gray-800  font-black px-3 text-2xl md:text-4xl">
-          GOOGLE REVIEW
+        Instantly Review Us
         </h2>
         <div className="row-start-3 hidden md:flex gap-6 flex-wrap items-center justify-center">
           <Link

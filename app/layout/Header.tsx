@@ -13,7 +13,7 @@ export default function Header() {
           href="/"
           className="absolute md:left-32 hover:no-undeline font-black px-3 bg-black text-white text-sm px-3 py-2 hover:bg-blue-500 rounded-xl"
         >
-          GOOGLE REVIEW
+         Instantly Review Us
         </Link>
         <SignedOut>
           <div className="absolute right-3 md:right-16 right-16 hover:no-undeline bg-black text-white text-xs px-3 py-2 hover:bg-blue-500 font-bold rounded">
